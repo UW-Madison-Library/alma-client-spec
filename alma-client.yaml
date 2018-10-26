@@ -1,0 +1,273 @@
+swagger: '2.0'
+info:
+  description: >-
+    This web service provides a RESTful interface to Alma.
+  version: 1.0.0
+  title: Alma API
+  contact:
+    email: andy.goodnough@wisc.edu
+schemes:
+  - https
+  - http
+host: api-na.hosted.exlibrisgroup.com
+basePath: /almaws/v1
+tags:
+  - name: users
+    description: Users
+paths:
+  '/users/{user_id}':
+    get:
+      tags:
+        - users
+      summary: Get user details
+      description: Returns a specific user's details
+      operationId: getUserDetails
+      produces:
+        - application/json
+        - application/xml
+      parameters:
+        - name: user_id
+          in: path
+          description: Id of user to retrieve
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/User'
+        '404':
+          description: Not found
+          schema:
+            $ref: '#/definitions/NotFound'
+      security:
+        - APIKeyHeader: []
+        # - APIKeyQueryParam: []
+securityDefinitions:
+   # Authorization: apikey xxx
+   APIKeyHeader:
+     type: apiKey
+     in: header
+     name: Authorization
+   # /path?apikey=xxx
+   APIKeyQueryParam:
+     type: apiKey
+     in: query
+     name: apikey
+definitions:
+  User:
+    type: object
+    properties:
+      record_type:
+        $ref: '#/definitions/RecordType'
+      primary_id:
+        type: string
+        example: 6032840010780086
+      first_name:
+        type: string
+        example: ANDY
+      middle_name:
+        type: string
+        example: G
+      last_name:
+        type: string
+        example: GOODNOUGH
+      full_name:
+        type: string
+        example: ANDY G GOODNOUGH
+      pin_number:
+        type: string
+        example: 1234
+      user_title:
+        $ref: '#/definitions/UserTitle'
+      job_category:
+        $ref: '#/definitions/JobCategory'
+      job_description:
+        type: string
+        example:
+      gender:
+        $ref: '#/definitions/Gender'
+      user_group:
+        $ref: '#/definitions/UserGroup'
+      campus_code:
+        $ref: '#/definitions/CampusCode'
+      web_site_url:
+        type: string
+        example:
+      cataloger_level:
+        $ref: '#/definitions/CatalogerLevel'
+      preferred_language:
+        $ref: '#/definitions/PreferredLanguage'
+      account_type:
+        $ref: '#/definitions/AccountType'
+      external_id:
+        type: string
+        example:
+      password:
+        type: string
+        example:
+      force_password_change:
+        type: string
+        example:
+      status:
+        $ref: '#/definitions/Status'
+      status_date:
+        type: string
+        example:
+      requests:
+        type: string
+        example:
+      loans:
+        type: string
+        example:
+      fees:
+        type: string
+        example:
+      contact_info:
+        type: string
+        example:
+      pref_first_name:
+        type: string
+        example:
+      pref_middle_name:
+        type: string
+        example:
+      pref_last_name:
+        type: string
+        example:
+      researcher:
+        type: string
+        example:
+      link:
+        type: string
+        example:
+      user_identifier:
+        type: string
+        example:
+      user_role:
+        type: string
+        example:
+      user_statistic:
+        type: string
+        example:
+      proxy_for_user:
+        type: string
+        example:
+      rs_library:
+        type: string
+        example:
+  RecordType:
+    type: object
+    properties:
+      value:
+        type: string
+        example: PUBLIC
+      desc:
+        type: string
+        example: Public
+  UserTitle:
+    type: object
+    properties:
+      value:
+        type: string
+        example: PUBLIC
+      desc:
+        type: string
+        example: Public
+  JobCategory:
+    type: object
+    properties:
+      value:
+        type: string
+        example: PUBLIC
+      desc:
+        type: string
+        example: Public
+  Gender:
+    type: object
+    properties:
+      value:
+        type: string
+        example: PUBLIC
+      desc:
+        type: string
+        example: Public
+  UserGroup:
+    type: object
+    properties:
+      value:
+        type: string
+        example: STAFF
+      desc:
+        type: string
+        example: STAFF
+  CampusCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: PUBLIC
+      desc:
+        type: string
+        example: Public
+  CatalogerLevel:
+    type: object
+    properties:
+      value:
+        type: string
+        example: 00
+      desc:
+        type: string
+        example: '[00] Default Level'
+  PreferredLanguage:
+    type: object
+    properties:
+      value:
+        type: string
+        example: en
+      desc:
+        type: string
+        example: English
+  AccountType:
+    type: object
+    properties:
+      value:
+        type: string
+        example: INTERNAL
+      desc:
+        type: string
+        example: Internal
+  Status:
+    type: object
+    properties:
+      value:
+        type: string
+        example: ACTIVE
+      desc:
+        type: string
+        example: Active
+  NotFound:
+    type: object
+    properties:
+      errorsExist:
+        type: boolean
+        example: true
+      errorList:
+        type: array
+        items:
+          $ref: '#/definitions/AlmaError'
+  AlmaError:
+    type: object
+    properties:
+      errorCode:
+        type: string
+        example: 401861
+      errorMessage:
+        type: string
+        example: User with identifier 90801254700/dsd was not found
+      trackingId:
+        type: string
+        example: E01-2510163523-NC9N4-AWAE653240618
+externalDocs:
+  description: Find out more about Swagger
+  url: 'http://swagger.io'

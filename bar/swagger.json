@@ -1,0 +1,478 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "This web service provides a RESTful interface to Alma.",
+    "version" : "1.0.0",
+    "title" : "Alma API",
+    "contact" : {
+      "email" : "andy.goodnough@wisc.edu"
+    }
+  },
+  "basePath" : "/almaws/v1",
+  "tags" : [ {
+    "name" : "users",
+    "description" : "Users"
+  } ],
+  "paths" : {
+    "/users/{user_id}" : {
+      "get" : {
+        "tags" : [ "users" ],
+        "summary" : "Get user details",
+        "description" : "Returns a specific user's details",
+        "operationId" : "getUserDetails",
+        "produces" : [ "application/json", "application/xml" ],
+        "parameters" : [ {
+          "name" : "user_id",
+          "in" : "path",
+          "description" : "Id of user to retrieve",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "$ref" : "#/definitions/User"
+            }
+          },
+          "404" : {
+            "description" : "Not found",
+            "schema" : {
+              "$ref" : "#/definitions/NotFound"
+            }
+          }
+        },
+        "security" : [ {
+          "APIKeyHeader" : [ ]
+        } ]
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "APIKeyHeader" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header"
+    },
+    "APIKeyQueryParam" : {
+      "type" : "apiKey",
+      "name" : "apikey",
+      "in" : "query"
+    }
+  },
+  "definitions" : {
+    "User" : {
+      "type" : "object",
+      "properties" : {
+        "record_type" : {
+          "$ref" : "#/definitions/RecordType"
+        },
+        "primary_id" : {
+          "type" : "string",
+          "example" : "6032840010780086"
+        },
+        "first_name" : {
+          "type" : "string",
+          "example" : "ANDY"
+        },
+        "middle_name" : {
+          "type" : "string",
+          "example" : "G"
+        },
+        "last_name" : {
+          "type" : "string",
+          "example" : "GOODNOUGH"
+        },
+        "full_name" : {
+          "type" : "string",
+          "example" : "ANDY G GOODNOUGH"
+        },
+        "pin_number" : {
+          "type" : "string",
+          "example" : "1234"
+        },
+        "user_title" : {
+          "$ref" : "#/definitions/UserTitle"
+        },
+        "job_category" : {
+          "$ref" : "#/definitions/JobCategory"
+        },
+        "job_description" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "gender" : {
+          "$ref" : "#/definitions/Gender"
+        },
+        "user_group" : {
+          "$ref" : "#/definitions/UserGroup"
+        },
+        "campus_code" : {
+          "$ref" : "#/definitions/CampusCode"
+        },
+        "web_site_url" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "cataloger_level" : {
+          "$ref" : "#/definitions/CatalogerLevel"
+        },
+        "preferred_language" : {
+          "$ref" : "#/definitions/PreferredLanguage"
+        },
+        "account_type" : {
+          "$ref" : "#/definitions/AccountType"
+        },
+        "external_id" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "password" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "force_password_change" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "status" : {
+          "$ref" : "#/definitions/Status"
+        },
+        "status_date" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "requests" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "loans" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "fees" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "contact_info" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "pref_first_name" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "pref_middle_name" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "pref_last_name" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "researcher" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "link" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "user_identifier" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "user_role" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "user_statistic" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "proxy_for_user" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "rs_library" : {
+          "type" : "string",
+          "example" : "null"
+        }
+      },
+      "example" : {
+        "user_identifier" : "null",
+        "cataloger_level" : {
+          "value" : "0",
+          "desc" : "[00] Default Level"
+        },
+        "account_type" : {
+          "value" : "INTERNAL",
+          "desc" : "Internal"
+        },
+        "status_date" : "null",
+        "fees" : "null",
+        "gender" : {
+          "value" : "PUBLIC",
+          "desc" : "Public"
+        },
+        "campus_code" : {
+          "value" : "PUBLIC",
+          "desc" : "Public"
+        },
+        "user_statistic" : "null",
+        "link" : "null",
+        "external_id" : "null",
+        "requests" : "null",
+        "contact_info" : "null",
+        "pin_number" : "1234",
+        "proxy_for_user" : "null",
+        "user_role" : "null",
+        "password" : "null",
+        "web_site_url" : "null",
+        "pref_first_name" : "null",
+        "rs_library" : "null",
+        "pref_middle_name" : "null",
+        "force_password_change" : "null",
+        "first_name" : "ANDY",
+        "preferred_language" : {
+          "value" : "en",
+          "desc" : "English"
+        },
+        "user_group" : {
+          "value" : "STAFF",
+          "desc" : "STAFF"
+        },
+        "researcher" : "null",
+        "loans" : "null",
+        "last_name" : "GOODNOUGH",
+        "middle_name" : "G",
+        "pref_last_name" : "null",
+        "record_type" : {
+          "value" : "PUBLIC",
+          "desc" : "Public"
+        },
+        "full_name" : "ANDY G GOODNOUGH",
+        "job_description" : "null",
+        "user_title" : {
+          "value" : "PUBLIC",
+          "desc" : "Public"
+        },
+        "primary_id" : "6032840010780086",
+        "job_category" : {
+          "value" : "PUBLIC",
+          "desc" : "Public"
+        },
+        "status" : {
+          "value" : "ACTIVE",
+          "desc" : "Active"
+        }
+      }
+    },
+    "RecordType" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "PUBLIC"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Public"
+        }
+      },
+      "example" : {
+        "value" : "PUBLIC",
+        "desc" : "Public"
+      }
+    },
+    "UserTitle" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "PUBLIC"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Public"
+        }
+      },
+      "example" : {
+        "value" : "PUBLIC",
+        "desc" : "Public"
+      }
+    },
+    "JobCategory" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "PUBLIC"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Public"
+        }
+      },
+      "example" : {
+        "value" : "PUBLIC",
+        "desc" : "Public"
+      }
+    },
+    "Gender" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "PUBLIC"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Public"
+        }
+      },
+      "example" : {
+        "value" : "PUBLIC",
+        "desc" : "Public"
+      }
+    },
+    "UserGroup" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "STAFF"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "STAFF"
+        }
+      },
+      "example" : {
+        "value" : "STAFF",
+        "desc" : "STAFF"
+      }
+    },
+    "CampusCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "PUBLIC"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Public"
+        }
+      },
+      "example" : {
+        "value" : "PUBLIC",
+        "desc" : "Public"
+      }
+    },
+    "CatalogerLevel" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "0"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "[00] Default Level"
+        }
+      },
+      "example" : {
+        "value" : "0",
+        "desc" : "[00] Default Level"
+      }
+    },
+    "PreferredLanguage" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "en"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "English"
+        }
+      },
+      "example" : {
+        "value" : "en",
+        "desc" : "English"
+      }
+    },
+    "AccountType" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "INTERNAL"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Internal"
+        }
+      },
+      "example" : {
+        "value" : "INTERNAL",
+        "desc" : "Internal"
+      }
+    },
+    "Status" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "ACTIVE"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Active"
+        }
+      },
+      "example" : {
+        "value" : "ACTIVE",
+        "desc" : "Active"
+      }
+    },
+    "NotFound" : {
+      "type" : "object",
+      "properties" : {
+        "errorsExist" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "errorList" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AlmaError"
+          }
+        }
+      }
+    },
+    "AlmaError" : {
+      "type" : "object",
+      "properties" : {
+        "errorCode" : {
+          "type" : "string",
+          "example" : "401861"
+        },
+        "errorMessage" : {
+          "type" : "string",
+          "example" : "User with identifier 90801254700/dsd was not found"
+        },
+        "trackingId" : {
+          "type" : "string",
+          "example" : "E01-2510163523-NC9N4-AWAE653240618"
+        }
+      }
+    }
+  },
+  "externalDocs" : {
+    "description" : "Find out more about Swagger",
+    "url" : "http://swagger.io"
+  }
+}
