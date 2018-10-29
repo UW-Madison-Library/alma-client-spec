@@ -110,7 +110,7 @@ definitions:
         type: string
         example:
       status:
-        $ref: '#/definitions/Status'
+        $ref: '#/definitions/Code'
       status_date:
         type: string
         example:
@@ -145,8 +145,9 @@ definitions:
         type: string
         example:
       user_role:
-        type: string
-        example:
+        type: array
+        items:
+          $ref: '#/definitions/UserRole'
       user_statistic:
         type: string
         example:
@@ -237,7 +238,20 @@ definitions:
       desc:
         type: string
         example: Internal
-  Status:
+  UserRole:
+    type: object
+    properties:
+      status:
+        $ref: '#/definitions/Code'
+      scope:
+        $ref: '#/definitions/Code'
+      role_type:
+        $ref: '#/definitions/Code'
+      parameter:
+        type: array
+        items:
+          $ref: '#/definitions/Parameter'
+  Code:
     type: object
     properties:
       value:
@@ -246,6 +260,13 @@ definitions:
       desc:
         type: string
         example: Active
+  Parameter:
+    type: object
+    properties:
+      type:
+        $ref: '#/definitions/Code'
+      value:
+        $ref: '#/definitions/Code'
   NotFound:
     type: object
     properties:

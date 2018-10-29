@@ -14,7 +14,7 @@
     "name" : "users",
     "description" : "Users"
   } ],
-  "schemes" : [ "http", "https" ],
+  "schemes" : [ "https", "http" ],
   "paths" : {
     "/users/{user_id}" : {
       "get" : {
@@ -138,7 +138,7 @@
           "example" : "null"
         },
         "status" : {
-          "$ref" : "#/definitions/Status"
+          "$ref" : "#/definitions/Code"
         },
         "status_date" : {
           "type" : "string",
@@ -185,8 +185,10 @@
           "example" : "null"
         },
         "user_role" : {
-          "type" : "string",
-          "example" : "null"
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/UserRole"
+          }
         },
         "user_statistic" : {
           "type" : "string",
@@ -228,7 +230,71 @@
         "contact_info" : "null",
         "pin_number" : "1234",
         "proxy_for_user" : "null",
-        "user_role" : "null",
+        "user_role" : [ {
+          "role_type" : {
+            "value" : "ACTIVE",
+            "desc" : "Active"
+          },
+          "scope" : {
+            "value" : "ACTIVE",
+            "desc" : "Active"
+          },
+          "parameter" : [ {
+            "type" : {
+              "value" : "ACTIVE",
+              "desc" : "Active"
+            },
+            "value" : {
+              "value" : "ACTIVE",
+              "desc" : "Active"
+            }
+          }, {
+            "type" : {
+              "value" : "ACTIVE",
+              "desc" : "Active"
+            },
+            "value" : {
+              "value" : "ACTIVE",
+              "desc" : "Active"
+            }
+          } ],
+          "status" : {
+            "value" : "ACTIVE",
+            "desc" : "Active"
+          }
+        }, {
+          "role_type" : {
+            "value" : "ACTIVE",
+            "desc" : "Active"
+          },
+          "scope" : {
+            "value" : "ACTIVE",
+            "desc" : "Active"
+          },
+          "parameter" : [ {
+            "type" : {
+              "value" : "ACTIVE",
+              "desc" : "Active"
+            },
+            "value" : {
+              "value" : "ACTIVE",
+              "desc" : "Active"
+            }
+          }, {
+            "type" : {
+              "value" : "ACTIVE",
+              "desc" : "Active"
+            },
+            "value" : {
+              "value" : "ACTIVE",
+              "desc" : "Active"
+            }
+          } ],
+          "status" : {
+            "value" : "ACTIVE",
+            "desc" : "Active"
+          }
+        } ],
         "password" : "null",
         "web_site_url" : "null",
         "pref_first_name" : "null",
@@ -423,7 +489,60 @@
         "desc" : "Internal"
       }
     },
-    "Status" : {
+    "UserRole" : {
+      "type" : "object",
+      "properties" : {
+        "status" : {
+          "$ref" : "#/definitions/Code"
+        },
+        "scope" : {
+          "$ref" : "#/definitions/Code"
+        },
+        "role_type" : {
+          "$ref" : "#/definitions/Code"
+        },
+        "parameter" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Parameter"
+          }
+        }
+      },
+      "example" : {
+        "role_type" : {
+          "value" : "ACTIVE",
+          "desc" : "Active"
+        },
+        "scope" : {
+          "value" : "ACTIVE",
+          "desc" : "Active"
+        },
+        "parameter" : [ {
+          "type" : {
+            "value" : "ACTIVE",
+            "desc" : "Active"
+          },
+          "value" : {
+            "value" : "ACTIVE",
+            "desc" : "Active"
+          }
+        }, {
+          "type" : {
+            "value" : "ACTIVE",
+            "desc" : "Active"
+          },
+          "value" : {
+            "value" : "ACTIVE",
+            "desc" : "Active"
+          }
+        } ],
+        "status" : {
+          "value" : "ACTIVE",
+          "desc" : "Active"
+        }
+      }
+    },
+    "Code" : {
       "type" : "object",
       "properties" : {
         "value" : {
@@ -438,6 +557,27 @@
       "example" : {
         "value" : "ACTIVE",
         "desc" : "Active"
+      }
+    },
+    "Parameter" : {
+      "type" : "object",
+      "properties" : {
+        "type" : {
+          "$ref" : "#/definitions/Code"
+        },
+        "value" : {
+          "$ref" : "#/definitions/Code"
+        }
+      },
+      "example" : {
+        "type" : {
+          "value" : "ACTIVE",
+          "desc" : "Active"
+        },
+        "value" : {
+          "value" : "ACTIVE",
+          "desc" : "Active"
+        }
       }
     },
     "NotFound" : {
