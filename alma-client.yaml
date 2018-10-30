@@ -102,7 +102,7 @@ definitions:
         $ref: '#/definitions/AccountType'
       external_id:
         type: string
-        example:
+        example: SIS
       password:
         type: string
         example:
@@ -110,7 +110,7 @@ definitions:
         type: string
         example:
       status:
-        $ref: '#/definitions/Code'
+        $ref: '#/definitions/StatusCode'
       status_date:
         type: string
         example:
@@ -124,8 +124,7 @@ definitions:
         type: string
         example:
       contact_info:
-        type: string
-        example:
+        $ref: '#/definitions/ContactInfo'
       pref_first_name:
         type: string
         example:
@@ -142,21 +141,32 @@ definitions:
         type: string
         example:
       user_identifier:
-        type: string
-        example:
+        type: array
+        items:
+          $ref: '#/definitions/UserIdentifier'
       user_role:
         type: array
         items:
           $ref: '#/definitions/UserRole'
+      user_block:
+        type: array
+        items:
+          $ref: '#/definitions/UserBlock'
+      user_note:
+        type: array
+        items:
+          $ref: '#/definitions/UserNote'
       user_statistic:
-        type: string
-        example:
+        type: array
+        items:
+          $ref: '#/definitions/UserStatistic'
       proxy_for_user:
         type: string
         example:
       rs_library:
-        type: string
-        example:
+        type: array
+        items:
+          $ref: '#/definitions/RsLibrary'
   RecordType:
     type: object
     properties:
@@ -171,28 +181,28 @@ definitions:
     properties:
       value:
         type: string
-        example: PUBLIC
+        example:
       desc:
         type: string
-        example: Public
+        example:
   JobCategory:
     type: object
     properties:
       value:
         type: string
-        example: PUBLIC
+        example:
       desc:
         type: string
-        example: Public
+        example:
   Gender:
     type: object
     properties:
       value:
         type: string
-        example: PUBLIC
+        example:
       desc:
         type: string
-        example: Public
+        example:
   UserGroup:
     type: object
     properties:
@@ -207,10 +217,10 @@ definitions:
     properties:
       value:
         type: string
-        example: PUBLIC
+        example:
       desc:
         type: string
-        example: Public
+        example:
   CatalogerLevel:
     type: object
     properties:
@@ -238,20 +248,171 @@ definitions:
       desc:
         type: string
         example: Internal
+  ContactInfo:
+    type: object
+    properties:
+      address:
+        type: array
+        items:
+          $ref: '#/definitions/Address'
+      email:
+        type: array
+        items:
+          $ref: '#/definitions/Email'
+      phone:
+        type: array
+        items:
+          $ref: '#/definitions/Phone'
+  Address:
+    type: object
+    properties:
+      line1:
+        type: string
+        example: 728 STATE ST
+      line2:
+        type: string
+        example: 436 MEMORIAL LIBRARY
+      line3:
+        type: string
+        example:
+      line4:
+        type: string
+        example:
+      line5:
+        type: string
+        example:
+      city:
+        type: string
+        example: MADISON
+      state_province:
+        type: string
+        example: WI
+      postal_code:
+        type: string
+        example: 53706-1418
+      country:
+        $ref: '#/definitions/CountryCode'
+      address_note:
+        type: string
+        example:
+      start_date:
+        type: string
+        example: 2018-06-14Z
+      preferred:
+        type: boolean
+        example: true
+      segment_type:
+        type: string
+        example: Internal
+      address_type:
+        type: array
+        items:
+          $ref: '#/definitions/AddressTypeCode'
+  Email:
+    type: object
+    properties:
+      email_address:
+        type: string
+        example: andy.goodnough@wisc.edu
+      description:
+        type: string
+        example: Home
+      preferred:
+        type: boolean
+        example: true
+      segment_type:
+        type: string
+      email_type:
+        $ref: '#/definitions/EmailTypeCode'
+  Phone:
+    type: object
+    properties:
+      phone_number:
+        type: string
+        example: 608/262-7789
+      preferred:
+        type: boolean
+        example: true
+      preferred_sms:
+        type: boolean
+        example: false
+      segment_type:
+        type: string
+      phone_type:
+        $ref: '#/definitions/PhoneTypeCode'
+  UserIdentifier:
+    type: object
+    properties:
+      value:
+        type: string
+      id_type:
+        $ref: '#/definitions/UserIdentifierIdTypeCode'
+      note:
+        type: string
+      status:
+        type: string
+      segment_type:
+        type: string
   UserRole:
     type: object
     properties:
       status:
-        $ref: '#/definitions/Code'
+        $ref: '#/definitions/UserRoleStatusCode'
       scope:
-        $ref: '#/definitions/Code'
+        $ref: '#/definitions/UserRoleScopeCode'
       role_type:
-        $ref: '#/definitions/Code'
+        $ref: '#/definitions/UserRoleRoleTypeCode'
       parameter:
         type: array
         items:
           $ref: '#/definitions/Parameter'
-  Code:
+  UserBlock:
+    type: object
+    properties:
+      block_type:
+        $ref: '#/definitions/UserBlockCode'
+      block_description:
+        type: string
+      block_status:
+        type: string
+      block_note:
+        type: string
+      created_by:
+        type: string
+      created_date:
+        type: string
+      expiry_date:
+        type: string
+      item_loan_id:
+        type: string
+  UserNote:
+    type: object
+    properties:
+      note_type:
+        $ref: '#/definitions/UserNoteCode'
+      note_text:
+        type: string
+      user_viewable:
+        type: boolean
+      created_by:
+        type: string
+      created_date:
+        type: string
+      segment_type:
+        type: string
+  UserStatistic:
+    type: object
+    properties:
+      statistic_category:
+        $ref: '#/definitions/UserStatisticCode'
+      segment_type:
+        type: string
+  RsLibrary:
+    type: object
+    properties:
+      code:
+        $ref: '#/definitions/RsLibraryCode'
+  StatusCode:
     type: object
     properties:
       value:
@@ -260,13 +421,139 @@ definitions:
       desc:
         type: string
         example: Active
+  ParameterTypeCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: Read only
+      desc:
+        type: string
+        example:
+  ParameterValueCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: "false"
+      desc:
+        type: string
+        example: Active
+  CountryCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: USA
+      desc:
+        type: string
+        example: United States
+  AddressTypeCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: work
+      desc:
+        type: string
+        example: Work
+  EmailTypeCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: work
+      desc:
+        type: string
+        example: Work
+  PhoneTypeCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: office
+      desc:
+        type: string
+        example: Office
+  UserIdentifierIdTypeCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: BARCODE
+      desc:
+        type: string
+        example: Barcode
+  UserRoleStatusCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: ACTIVE
+      desc:
+        type: string
+        example: Active
+  UserRoleScopeCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: 01UWI_MAD
+      desc:
+        type: string
+        example: University of Wisconsin - Madison
+  UserRoleRoleTypeCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: 200
+      desc:
+        type: string
+        example: Patron
+  UserBlockCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example:
+      desc:
+        type: string
+        example:
+  UserNoteCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: OTHER
+      desc:
+        type: string
+        example: Other
+  UserStatisticCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: PHARM/PHARMACY
+      desc:
+        type: string
+        example:
+  RsLibraryCode:
+    type: object
+    properties:
+      value:
+        type: string
+        example: MEMORIAL
+      desc:
+        type: string
+        example: Memorial Library
   Parameter:
     type: object
     properties:
       type:
-        $ref: '#/definitions/Code'
+        $ref: '#/definitions/ParameterTypeCode'
       value:
-        $ref: '#/definitions/Code'
+        $ref: '#/definitions/ParameterValueCode'
   NotFound:
     type: object
     properties:

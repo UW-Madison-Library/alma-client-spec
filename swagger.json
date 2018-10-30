@@ -127,7 +127,7 @@
         },
         "external_id" : {
           "type" : "string",
-          "example" : "null"
+          "example" : "SIS"
         },
         "password" : {
           "type" : "string",
@@ -138,7 +138,7 @@
           "example" : "null"
         },
         "status" : {
-          "$ref" : "#/definitions/Code"
+          "$ref" : "#/definitions/StatusCode"
         },
         "status_date" : {
           "type" : "string",
@@ -157,8 +157,7 @@
           "example" : "null"
         },
         "contact_info" : {
-          "type" : "string",
-          "example" : "null"
+          "$ref" : "#/definitions/ContactInfo"
         },
         "pref_first_name" : {
           "type" : "string",
@@ -181,8 +180,10 @@
           "example" : "null"
         },
         "user_identifier" : {
-          "type" : "string",
-          "example" : "null"
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/UserIdentifier"
+          }
         },
         "user_role" : {
           "type" : "array",
@@ -190,21 +191,55 @@
             "$ref" : "#/definitions/UserRole"
           }
         },
+        "user_block" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/UserBlock"
+          }
+        },
+        "user_note" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/UserNote"
+          }
+        },
         "user_statistic" : {
-          "type" : "string",
-          "example" : "null"
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/UserStatistic"
+          }
         },
         "proxy_for_user" : {
           "type" : "string",
           "example" : "null"
         },
         "rs_library" : {
-          "type" : "string",
-          "example" : "null"
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RsLibrary"
+          }
         }
       },
       "example" : {
-        "user_identifier" : "null",
+        "user_identifier" : [ {
+          "note" : "note",
+          "segment_type" : "segment_type",
+          "id_type" : {
+            "value" : "BARCODE",
+            "desc" : "Barcode"
+          },
+          "value" : "value",
+          "status" : "status"
+        }, {
+          "note" : "note",
+          "segment_type" : "segment_type",
+          "id_type" : {
+            "value" : "BARCODE",
+            "desc" : "Barcode"
+          },
+          "value" : "value",
+          "status" : "status"
+        } ],
         "cataloger_level" : {
           "value" : "0",
           "desc" : "[00] Default Level"
@@ -216,45 +251,170 @@
         "status_date" : "null",
         "fees" : "null",
         "gender" : {
-          "value" : "PUBLIC",
-          "desc" : "Public"
+          "value" : "null",
+          "desc" : "null"
         },
         "campus_code" : {
-          "value" : "PUBLIC",
-          "desc" : "Public"
+          "value" : "null",
+          "desc" : "null"
         },
-        "user_statistic" : "null",
+        "user_block" : [ {
+          "item_loan_id" : "item_loan_id",
+          "block_type" : {
+            "value" : "null",
+            "desc" : "null"
+          },
+          "block_status" : "block_status",
+          "block_description" : "block_description",
+          "expiry_date" : "expiry_date",
+          "block_note" : "block_note",
+          "created_date" : "created_date",
+          "created_by" : "created_by"
+        }, {
+          "item_loan_id" : "item_loan_id",
+          "block_type" : {
+            "value" : "null",
+            "desc" : "null"
+          },
+          "block_status" : "block_status",
+          "block_description" : "block_description",
+          "expiry_date" : "expiry_date",
+          "block_note" : "block_note",
+          "created_date" : "created_date",
+          "created_by" : "created_by"
+        } ],
+        "user_statistic" : [ {
+          "segment_type" : "segment_type",
+          "statistic_category" : {
+            "value" : "PHARM/PHARMACY",
+            "desc" : "null"
+          }
+        }, {
+          "segment_type" : "segment_type",
+          "statistic_category" : {
+            "value" : "PHARM/PHARMACY",
+            "desc" : "null"
+          }
+        } ],
         "link" : "null",
-        "external_id" : "null",
+        "external_id" : "SIS",
         "requests" : "null",
-        "contact_info" : "null",
+        "contact_info" : {
+          "address" : [ {
+            "country" : {
+              "value" : "USA",
+              "desc" : "United States"
+            },
+            "line5" : "null",
+            "line4" : "null",
+            "address_note" : "null",
+            "address_type" : [ {
+              "value" : "work",
+              "desc" : "Work"
+            }, {
+              "value" : "work",
+              "desc" : "Work"
+            } ],
+            "city" : "MADISON",
+            "state_province" : "WI",
+            "segment_type" : "Internal",
+            "line3" : "null",
+            "postal_code" : "53706-1418",
+            "line2" : "436 MEMORIAL LIBRARY",
+            "line1" : "728 STATE ST",
+            "preferred" : true,
+            "start_date" : "2018-06-14Z"
+          }, {
+            "country" : {
+              "value" : "USA",
+              "desc" : "United States"
+            },
+            "line5" : "null",
+            "line4" : "null",
+            "address_note" : "null",
+            "address_type" : [ {
+              "value" : "work",
+              "desc" : "Work"
+            }, {
+              "value" : "work",
+              "desc" : "Work"
+            } ],
+            "city" : "MADISON",
+            "state_province" : "WI",
+            "segment_type" : "Internal",
+            "line3" : "null",
+            "postal_code" : "53706-1418",
+            "line2" : "436 MEMORIAL LIBRARY",
+            "line1" : "728 STATE ST",
+            "preferred" : true,
+            "start_date" : "2018-06-14Z"
+          } ],
+          "phone" : [ {
+            "phone_type" : {
+              "value" : "office",
+              "desc" : "Office"
+            },
+            "preferred_sms" : false,
+            "segment_type" : "segment_type",
+            "phone_number" : "608/262-7789",
+            "preferred" : true
+          }, {
+            "phone_type" : {
+              "value" : "office",
+              "desc" : "Office"
+            },
+            "preferred_sms" : false,
+            "segment_type" : "segment_type",
+            "phone_number" : "608/262-7789",
+            "preferred" : true
+          } ],
+          "email" : [ {
+            "email_address" : "andy.goodnough@wisc.edu",
+            "email_type" : {
+              "value" : "work",
+              "desc" : "Work"
+            },
+            "description" : "Home",
+            "segment_type" : "segment_type",
+            "preferred" : true
+          }, {
+            "email_address" : "andy.goodnough@wisc.edu",
+            "email_type" : {
+              "value" : "work",
+              "desc" : "Work"
+            },
+            "description" : "Home",
+            "segment_type" : "segment_type",
+            "preferred" : true
+          } ]
+        },
         "pin_number" : "1234",
         "proxy_for_user" : "null",
         "user_role" : [ {
           "role_type" : {
-            "value" : "ACTIVE",
-            "desc" : "Active"
+            "value" : "200",
+            "desc" : "Patron"
           },
           "scope" : {
-            "value" : "ACTIVE",
-            "desc" : "Active"
+            "value" : "01UWI_MAD",
+            "desc" : "University of Wisconsin - Madison"
           },
           "parameter" : [ {
             "type" : {
-              "value" : "ACTIVE",
-              "desc" : "Active"
+              "value" : "Read only",
+              "desc" : "null"
             },
             "value" : {
-              "value" : "ACTIVE",
+              "value" : "false",
               "desc" : "Active"
             }
           }, {
             "type" : {
-              "value" : "ACTIVE",
-              "desc" : "Active"
+              "value" : "Read only",
+              "desc" : "null"
             },
             "value" : {
-              "value" : "ACTIVE",
+              "value" : "false",
               "desc" : "Active"
             }
           } ],
@@ -264,29 +424,29 @@
           }
         }, {
           "role_type" : {
-            "value" : "ACTIVE",
-            "desc" : "Active"
+            "value" : "200",
+            "desc" : "Patron"
           },
           "scope" : {
-            "value" : "ACTIVE",
-            "desc" : "Active"
+            "value" : "01UWI_MAD",
+            "desc" : "University of Wisconsin - Madison"
           },
           "parameter" : [ {
             "type" : {
-              "value" : "ACTIVE",
-              "desc" : "Active"
+              "value" : "Read only",
+              "desc" : "null"
             },
             "value" : {
-              "value" : "ACTIVE",
+              "value" : "false",
               "desc" : "Active"
             }
           }, {
             "type" : {
-              "value" : "ACTIVE",
-              "desc" : "Active"
+              "value" : "Read only",
+              "desc" : "null"
             },
             "value" : {
-              "value" : "ACTIVE",
+              "value" : "false",
               "desc" : "Active"
             }
           } ],
@@ -298,9 +458,40 @@
         "password" : "null",
         "web_site_url" : "null",
         "pref_first_name" : "null",
-        "rs_library" : "null",
+        "rs_library" : [ {
+          "code" : {
+            "value" : "MEMORIAL",
+            "desc" : "Memorial Library"
+          }
+        }, {
+          "code" : {
+            "value" : "MEMORIAL",
+            "desc" : "Memorial Library"
+          }
+        } ],
         "pref_middle_name" : "null",
         "force_password_change" : "null",
+        "user_note" : [ {
+          "note_type" : {
+            "value" : "OTHER",
+            "desc" : "Other"
+          },
+          "user_viewable" : true,
+          "segment_type" : "segment_type",
+          "created_date" : "created_date",
+          "note_text" : "note_text",
+          "created_by" : "created_by"
+        }, {
+          "note_type" : {
+            "value" : "OTHER",
+            "desc" : "Other"
+          },
+          "user_viewable" : true,
+          "segment_type" : "segment_type",
+          "created_date" : "created_date",
+          "note_text" : "note_text",
+          "created_by" : "created_by"
+        } ],
         "first_name" : "ANDY",
         "preferred_language" : {
           "value" : "en",
@@ -322,13 +513,13 @@
         "full_name" : "ANDY G GOODNOUGH",
         "job_description" : "null",
         "user_title" : {
-          "value" : "PUBLIC",
-          "desc" : "Public"
+          "value" : "null",
+          "desc" : "null"
         },
         "primary_id" : "6032840010780086",
         "job_category" : {
-          "value" : "PUBLIC",
-          "desc" : "Public"
+          "value" : "null",
+          "desc" : "null"
         },
         "status" : {
           "value" : "ACTIVE",
@@ -358,16 +549,16 @@
       "properties" : {
         "value" : {
           "type" : "string",
-          "example" : "PUBLIC"
+          "example" : "null"
         },
         "desc" : {
           "type" : "string",
-          "example" : "Public"
+          "example" : "null"
         }
       },
       "example" : {
-        "value" : "PUBLIC",
-        "desc" : "Public"
+        "value" : "null",
+        "desc" : "null"
       }
     },
     "JobCategory" : {
@@ -375,16 +566,16 @@
       "properties" : {
         "value" : {
           "type" : "string",
-          "example" : "PUBLIC"
+          "example" : "null"
         },
         "desc" : {
           "type" : "string",
-          "example" : "Public"
+          "example" : "null"
         }
       },
       "example" : {
-        "value" : "PUBLIC",
-        "desc" : "Public"
+        "value" : "null",
+        "desc" : "null"
       }
     },
     "Gender" : {
@@ -392,16 +583,16 @@
       "properties" : {
         "value" : {
           "type" : "string",
-          "example" : "PUBLIC"
+          "example" : "null"
         },
         "desc" : {
           "type" : "string",
-          "example" : "Public"
+          "example" : "null"
         }
       },
       "example" : {
-        "value" : "PUBLIC",
-        "desc" : "Public"
+        "value" : "null",
+        "desc" : "null"
       }
     },
     "UserGroup" : {
@@ -426,16 +617,16 @@
       "properties" : {
         "value" : {
           "type" : "string",
-          "example" : "PUBLIC"
+          "example" : "null"
         },
         "desc" : {
           "type" : "string",
-          "example" : "Public"
+          "example" : "null"
         }
       },
       "example" : {
-        "value" : "PUBLIC",
-        "desc" : "Public"
+        "value" : "null",
+        "desc" : "null"
       }
     },
     "CatalogerLevel" : {
@@ -489,17 +680,312 @@
         "desc" : "Internal"
       }
     },
+    "ContactInfo" : {
+      "type" : "object",
+      "properties" : {
+        "address" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Address"
+          }
+        },
+        "email" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Email"
+          }
+        },
+        "phone" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Phone"
+          }
+        }
+      },
+      "example" : {
+        "address" : [ {
+          "country" : {
+            "value" : "USA",
+            "desc" : "United States"
+          },
+          "line5" : "null",
+          "line4" : "null",
+          "address_note" : "null",
+          "address_type" : [ {
+            "value" : "work",
+            "desc" : "Work"
+          }, {
+            "value" : "work",
+            "desc" : "Work"
+          } ],
+          "city" : "MADISON",
+          "state_province" : "WI",
+          "segment_type" : "Internal",
+          "line3" : "null",
+          "postal_code" : "53706-1418",
+          "line2" : "436 MEMORIAL LIBRARY",
+          "line1" : "728 STATE ST",
+          "preferred" : true,
+          "start_date" : "2018-06-14Z"
+        }, {
+          "country" : {
+            "value" : "USA",
+            "desc" : "United States"
+          },
+          "line5" : "null",
+          "line4" : "null",
+          "address_note" : "null",
+          "address_type" : [ {
+            "value" : "work",
+            "desc" : "Work"
+          }, {
+            "value" : "work",
+            "desc" : "Work"
+          } ],
+          "city" : "MADISON",
+          "state_province" : "WI",
+          "segment_type" : "Internal",
+          "line3" : "null",
+          "postal_code" : "53706-1418",
+          "line2" : "436 MEMORIAL LIBRARY",
+          "line1" : "728 STATE ST",
+          "preferred" : true,
+          "start_date" : "2018-06-14Z"
+        } ],
+        "phone" : [ {
+          "phone_type" : {
+            "value" : "office",
+            "desc" : "Office"
+          },
+          "preferred_sms" : false,
+          "segment_type" : "segment_type",
+          "phone_number" : "608/262-7789",
+          "preferred" : true
+        }, {
+          "phone_type" : {
+            "value" : "office",
+            "desc" : "Office"
+          },
+          "preferred_sms" : false,
+          "segment_type" : "segment_type",
+          "phone_number" : "608/262-7789",
+          "preferred" : true
+        } ],
+        "email" : [ {
+          "email_address" : "andy.goodnough@wisc.edu",
+          "email_type" : {
+            "value" : "work",
+            "desc" : "Work"
+          },
+          "description" : "Home",
+          "segment_type" : "segment_type",
+          "preferred" : true
+        }, {
+          "email_address" : "andy.goodnough@wisc.edu",
+          "email_type" : {
+            "value" : "work",
+            "desc" : "Work"
+          },
+          "description" : "Home",
+          "segment_type" : "segment_type",
+          "preferred" : true
+        } ]
+      }
+    },
+    "Address" : {
+      "type" : "object",
+      "properties" : {
+        "line1" : {
+          "type" : "string",
+          "example" : "728 STATE ST"
+        },
+        "line2" : {
+          "type" : "string",
+          "example" : "436 MEMORIAL LIBRARY"
+        },
+        "line3" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "line4" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "line5" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "city" : {
+          "type" : "string",
+          "example" : "MADISON"
+        },
+        "state_province" : {
+          "type" : "string",
+          "example" : "WI"
+        },
+        "postal_code" : {
+          "type" : "string",
+          "example" : "53706-1418"
+        },
+        "country" : {
+          "$ref" : "#/definitions/CountryCode"
+        },
+        "address_note" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "start_date" : {
+          "type" : "string",
+          "example" : "2018-06-14Z"
+        },
+        "preferred" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "segment_type" : {
+          "type" : "string",
+          "example" : "Internal"
+        },
+        "address_type" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/AddressTypeCode"
+          }
+        }
+      },
+      "example" : {
+        "country" : {
+          "value" : "USA",
+          "desc" : "United States"
+        },
+        "line5" : "null",
+        "line4" : "null",
+        "address_note" : "null",
+        "address_type" : [ {
+          "value" : "work",
+          "desc" : "Work"
+        }, {
+          "value" : "work",
+          "desc" : "Work"
+        } ],
+        "city" : "MADISON",
+        "state_province" : "WI",
+        "segment_type" : "Internal",
+        "line3" : "null",
+        "postal_code" : "53706-1418",
+        "line2" : "436 MEMORIAL LIBRARY",
+        "line1" : "728 STATE ST",
+        "preferred" : true,
+        "start_date" : "2018-06-14Z"
+      }
+    },
+    "Email" : {
+      "type" : "object",
+      "properties" : {
+        "email_address" : {
+          "type" : "string",
+          "example" : "andy.goodnough@wisc.edu"
+        },
+        "description" : {
+          "type" : "string",
+          "example" : "Home"
+        },
+        "preferred" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "segment_type" : {
+          "type" : "string"
+        },
+        "email_type" : {
+          "$ref" : "#/definitions/EmailTypeCode"
+        }
+      },
+      "example" : {
+        "email_address" : "andy.goodnough@wisc.edu",
+        "email_type" : {
+          "value" : "work",
+          "desc" : "Work"
+        },
+        "description" : "Home",
+        "segment_type" : "segment_type",
+        "preferred" : true
+      }
+    },
+    "Phone" : {
+      "type" : "object",
+      "properties" : {
+        "phone_number" : {
+          "type" : "string",
+          "example" : "608/262-7789"
+        },
+        "preferred" : {
+          "type" : "boolean",
+          "example" : true
+        },
+        "preferred_sms" : {
+          "type" : "boolean",
+          "example" : false
+        },
+        "segment_type" : {
+          "type" : "string"
+        },
+        "phone_type" : {
+          "$ref" : "#/definitions/PhoneTypeCode"
+        }
+      },
+      "example" : {
+        "phone_type" : {
+          "value" : "office",
+          "desc" : "Office"
+        },
+        "preferred_sms" : false,
+        "segment_type" : "segment_type",
+        "phone_number" : "608/262-7789",
+        "preferred" : true
+      }
+    },
+    "UserIdentifier" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string"
+        },
+        "id_type" : {
+          "$ref" : "#/definitions/UserIdentifierIdTypeCode"
+        },
+        "note" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "segment_type" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "note" : "note",
+        "segment_type" : "segment_type",
+        "id_type" : {
+          "value" : "BARCODE",
+          "desc" : "Barcode"
+        },
+        "value" : "value",
+        "status" : "status"
+      }
+    },
     "UserRole" : {
       "type" : "object",
       "properties" : {
         "status" : {
-          "$ref" : "#/definitions/Code"
+          "$ref" : "#/definitions/UserRoleStatusCode"
         },
         "scope" : {
-          "$ref" : "#/definitions/Code"
+          "$ref" : "#/definitions/UserRoleScopeCode"
         },
         "role_type" : {
-          "$ref" : "#/definitions/Code"
+          "$ref" : "#/definitions/UserRoleRoleTypeCode"
         },
         "parameter" : {
           "type" : "array",
@@ -510,29 +996,29 @@
       },
       "example" : {
         "role_type" : {
-          "value" : "ACTIVE",
-          "desc" : "Active"
+          "value" : "200",
+          "desc" : "Patron"
         },
         "scope" : {
-          "value" : "ACTIVE",
-          "desc" : "Active"
+          "value" : "01UWI_MAD",
+          "desc" : "University of Wisconsin - Madison"
         },
         "parameter" : [ {
           "type" : {
-            "value" : "ACTIVE",
-            "desc" : "Active"
+            "value" : "Read only",
+            "desc" : "null"
           },
           "value" : {
-            "value" : "ACTIVE",
+            "value" : "false",
             "desc" : "Active"
           }
         }, {
           "type" : {
-            "value" : "ACTIVE",
-            "desc" : "Active"
+            "value" : "Read only",
+            "desc" : "null"
           },
           "value" : {
-            "value" : "ACTIVE",
+            "value" : "false",
             "desc" : "Active"
           }
         } ],
@@ -542,7 +1028,115 @@
         }
       }
     },
-    "Code" : {
+    "UserBlock" : {
+      "type" : "object",
+      "properties" : {
+        "block_type" : {
+          "$ref" : "#/definitions/UserBlockCode"
+        },
+        "block_description" : {
+          "type" : "string"
+        },
+        "block_status" : {
+          "type" : "string"
+        },
+        "block_note" : {
+          "type" : "string"
+        },
+        "created_by" : {
+          "type" : "string"
+        },
+        "created_date" : {
+          "type" : "string"
+        },
+        "expiry_date" : {
+          "type" : "string"
+        },
+        "item_loan_id" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "item_loan_id" : "item_loan_id",
+        "block_type" : {
+          "value" : "null",
+          "desc" : "null"
+        },
+        "block_status" : "block_status",
+        "block_description" : "block_description",
+        "expiry_date" : "expiry_date",
+        "block_note" : "block_note",
+        "created_date" : "created_date",
+        "created_by" : "created_by"
+      }
+    },
+    "UserNote" : {
+      "type" : "object",
+      "properties" : {
+        "note_type" : {
+          "$ref" : "#/definitions/UserNoteCode"
+        },
+        "note_text" : {
+          "type" : "string"
+        },
+        "user_viewable" : {
+          "type" : "boolean"
+        },
+        "created_by" : {
+          "type" : "string"
+        },
+        "created_date" : {
+          "type" : "string"
+        },
+        "segment_type" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "note_type" : {
+          "value" : "OTHER",
+          "desc" : "Other"
+        },
+        "user_viewable" : true,
+        "segment_type" : "segment_type",
+        "created_date" : "created_date",
+        "note_text" : "note_text",
+        "created_by" : "created_by"
+      }
+    },
+    "UserStatistic" : {
+      "type" : "object",
+      "properties" : {
+        "statistic_category" : {
+          "$ref" : "#/definitions/UserStatisticCode"
+        },
+        "segment_type" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "segment_type" : "segment_type",
+        "statistic_category" : {
+          "value" : "PHARM/PHARMACY",
+          "desc" : "null"
+        }
+      }
+    },
+    "RsLibrary" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "$ref" : "#/definitions/RsLibraryCode"
+        }
+      },
+      "example" : {
+        "code" : {
+          "value" : "MEMORIAL",
+          "desc" : "Memorial Library"
+        }
+      }
+    },
+    "StatusCode" : {
       "type" : "object",
       "properties" : {
         "value" : {
@@ -559,23 +1153,261 @@
         "desc" : "Active"
       }
     },
+    "ParameterTypeCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "Read only"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "null"
+        }
+      },
+      "example" : {
+        "value" : "Read only",
+        "desc" : "null"
+      }
+    },
+    "ParameterValueCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "false"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Active"
+        }
+      },
+      "example" : {
+        "value" : "false",
+        "desc" : "Active"
+      }
+    },
+    "CountryCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "USA"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "United States"
+        }
+      },
+      "example" : {
+        "value" : "USA",
+        "desc" : "United States"
+      }
+    },
+    "AddressTypeCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "work"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Work"
+        }
+      },
+      "example" : {
+        "value" : "work",
+        "desc" : "Work"
+      }
+    },
+    "EmailTypeCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "work"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Work"
+        }
+      },
+      "example" : {
+        "value" : "work",
+        "desc" : "Work"
+      }
+    },
+    "PhoneTypeCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "office"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Office"
+        }
+      },
+      "example" : {
+        "value" : "office",
+        "desc" : "Office"
+      }
+    },
+    "UserIdentifierIdTypeCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "BARCODE"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Barcode"
+        }
+      },
+      "example" : {
+        "value" : "BARCODE",
+        "desc" : "Barcode"
+      }
+    },
+    "UserRoleStatusCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "ACTIVE"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Active"
+        }
+      },
+      "example" : {
+        "value" : "ACTIVE",
+        "desc" : "Active"
+      }
+    },
+    "UserRoleScopeCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "01UWI_MAD"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "University of Wisconsin - Madison"
+        }
+      },
+      "example" : {
+        "value" : "01UWI_MAD",
+        "desc" : "University of Wisconsin - Madison"
+      }
+    },
+    "UserRoleRoleTypeCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "200"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Patron"
+        }
+      },
+      "example" : {
+        "value" : "200",
+        "desc" : "Patron"
+      }
+    },
+    "UserBlockCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "null"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "null"
+        }
+      },
+      "example" : {
+        "value" : "null",
+        "desc" : "null"
+      }
+    },
+    "UserNoteCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "OTHER"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Other"
+        }
+      },
+      "example" : {
+        "value" : "OTHER",
+        "desc" : "Other"
+      }
+    },
+    "UserStatisticCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "PHARM/PHARMACY"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "null"
+        }
+      },
+      "example" : {
+        "value" : "PHARM/PHARMACY",
+        "desc" : "null"
+      }
+    },
+    "RsLibraryCode" : {
+      "type" : "object",
+      "properties" : {
+        "value" : {
+          "type" : "string",
+          "example" : "MEMORIAL"
+        },
+        "desc" : {
+          "type" : "string",
+          "example" : "Memorial Library"
+        }
+      },
+      "example" : {
+        "value" : "MEMORIAL",
+        "desc" : "Memorial Library"
+      }
+    },
     "Parameter" : {
       "type" : "object",
       "properties" : {
         "type" : {
-          "$ref" : "#/definitions/Code"
+          "$ref" : "#/definitions/ParameterTypeCode"
         },
         "value" : {
-          "$ref" : "#/definitions/Code"
+          "$ref" : "#/definitions/ParameterValueCode"
         }
       },
       "example" : {
         "type" : {
-          "value" : "ACTIVE",
-          "desc" : "Active"
+          "value" : "Read only",
+          "desc" : "null"
         },
         "value" : {
-          "value" : "ACTIVE",
+          "value" : "false",
           "desc" : "Active"
         }
       }
